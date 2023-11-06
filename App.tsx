@@ -1,12 +1,33 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { TailwindProvider, useTailwind } from 'tailwind-rn';
+import utilities from './tailwind.json';     
+import CustomerScreen from './Screens/CustomerScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import RootNavigator from './Navigator/RootNavigator';
+
+import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+
+const client = new ApolloClient({
+
+  uri: 'https://batavia.stepzen.net/api/iced-grizzly/__graphql',
+
+  cache: new InMemoryCache(),
+
+});
 
 export default function App() {
+  
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    //@ts-ignore TailwindProvider missing a type definition
+    
+      <TailwindProvider utilities={utilities}>
+        <NavigationContainer>
+          <RootNavigator/>
+        </NavigationContainer>
+        
+      </TailwindProvider>
+  
   );
 }
 
