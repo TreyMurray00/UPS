@@ -5,18 +5,19 @@ type ItemsEntry {
   quantity: Int
 }
 
-type TrackingItemsList {
+type TrackingItems {
   customer_id: String
   items: [ItemsEntry]
   customer: Customer
     @materializer(
       query: "getCustomerById"
       arguments: [{name: "id", field: "customer_id"}]
+      
     )
 }
 
 type Query {
-  getTrackingItemById(id:ID!): TrackingItemsList
+  getTrackingItemsById(id:ID!): TrackingItems
     @rest(
       endpoint: "https://ups-app-8b6ed-default-rtdb.firebaseio.com/trackingItems/$id.json"
     )

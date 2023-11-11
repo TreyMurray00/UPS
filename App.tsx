@@ -14,6 +14,10 @@ const client = new ApolloClient({
 
   cache: new InMemoryCache(),
 
+  headers: {
+    Authorization : "apikey batavia::stepzen.io+1000::261969090f5938d8c4061604a988089a37dd855db40f06c0a810205f25bbc2dc"
+  }
+
 });
 
 export default function App() {
@@ -22,9 +26,11 @@ export default function App() {
     //@ts-ignore TailwindProvider missing a type definition
     
       <TailwindProvider utilities={utilities}>
-        <NavigationContainer>
-          <RootNavigator/>
-        </NavigationContainer>
+        <ApolloProvider client={client}>
+          <NavigationContainer>
+            <RootNavigator/>
+          </NavigationContainer>
+        </ApolloProvider>
         
       </TailwindProvider>
   

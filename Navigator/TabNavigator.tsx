@@ -2,7 +2,7 @@ import { View, Text } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import CustomerScreen from '../Screens/CustomerScreen'
-import OrderScreen from '../Screens/OrderScreen'
+import OrderScreen from '../Screens/OrdersScreen'
 import { useNavigation } from '@react-navigation/native'
 import { Icon } from '@rneui/base'
 

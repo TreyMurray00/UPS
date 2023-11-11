@@ -7,9 +7,9 @@ type Order{
   createdAt: Date 
   shippingCost: Float
   trackingId: String!
-  trackingItems: TrackingItemsList
+  trackingItems: TrackingItems
     @materializer(
-      query: "getTrackingItemById"
+      query: "getTrackingItemsById"
       arguments: [{name: "id" , field: "trackingId"}]
     )
 }
@@ -20,9 +20,9 @@ type OrderList{
 }
 
 type Query {
-  getOrder: OrderList
+  getOrder: [OrderList]
     @rest(
       endpoint: "https://ups-app-8b6ed-default-rtdb.firebaseio.com/orders.json"
-      transforms: [{pathpattern:[] , editor:"objectToArray"}]
+      transforms: [{pathpattern:[] , editor: "objectToArray"}]
     )
 }
